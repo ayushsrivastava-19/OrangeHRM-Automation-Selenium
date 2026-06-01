@@ -9,7 +9,7 @@ public class LoginPage {
 
     private By usernameField = By.name("username");
     private By passwordField = By.cssSelector("input[type='password']");
-    private By loginButton = By.xpath("//button[text()='Login']");
+    private By loginButton = By.xpath("//button[normalize-space()='Login']");
     private By errorMessage = By.xpath("//p[text()='Invalid credentials']");
 
     public LoginPage(WebDriver dr) {
