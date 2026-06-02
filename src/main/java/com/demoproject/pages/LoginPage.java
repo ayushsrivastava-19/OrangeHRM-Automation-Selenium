@@ -17,8 +17,8 @@ public class LoginPage {
     }
 
     public void login(String username, String password) {
-        driver.enterText(usernameField, "Admin");
-        driver.enterText(passwordField, "admin123");
+        driver.enterText(usernameField, username);
+        driver.enterText(passwordField, password);
         driver.click(loginButton);
     }
 
