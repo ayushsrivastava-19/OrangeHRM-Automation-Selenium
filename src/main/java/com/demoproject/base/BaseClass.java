@@ -1,5 +1,7 @@
 package com.demoproject.base;
 
+import com.demoproject.actiondriver.ActionDriver;
+import com.demoproject.utils.LoggerManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -12,11 +14,14 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
+import org.apache.logging.log4j.Logger;
 
 public class BaseClass {
 
     protected static Properties prop;
-    protected WebDriver driver;
+    protected static WebDriver driver;
+    private static ActionDriver actionDriver;
+    public static final Logger logger = LoggerManager.getLogger(BaseClass.class);
 
     //Load the configuration file
     @BeforeSuite
@@ -24,6 +29,7 @@ public class BaseClass {
         prop = new Properties();
         FileInputStream fis = new FileInputStream("src/main/resources/config.properties");
         prop.load(fis);
+        logger.info("config.properties file loaded");
     }
 
     private void launchBrowser() {
@@ -49,15 +55,26 @@ public class BaseClass {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static Properties getProperties() {
         return prop;
     }
 
-    public WebDriver getDriver() {
+    public static WebDriver getWebDriver() {
+        if(driver == null){
+            System.out.println("WebDriver is not initialized");
+            throw new IllegalStateException("WebDriver is not initialized");
+        }
         return driver;
+    }
+
+    public static ActionDriver getActionDriver() {
+        if(actionDriver == null){
+            System.out.println("ActionDriver is not initialized");
+            throw new IllegalStateException("ActionDriver is not initialized");
+        }
+        return actionDriver;
     }
 
     @BeforeMethod
@@ -66,6 +83,17 @@ public class BaseClass {
         launchBrowser();
         configureBrowser();
         staticWait(2);
+        logger.info("Webdriver initialized and browser maximized");
+        logger.trace("This is a trace message");
+        logger.error("This is an error message");
+        logger.fatal("This is a fatal message");
+        logger.warn("This is a warn message");
+        logger.debug("This is a debug message");
+
+        if(actionDriver == null){
+            actionDriver = new ActionDriver(driver);
+            System.out.println("ActionDriver instance is created");
+        }
     }
 
     @AfterMethod
@@ -73,6 +101,8 @@ public class BaseClass {
         if (driver != null) {
             driver.quit();
         }
+        driver = null;
+        actionDriver = null;
     }
 
     //Static wait for pause

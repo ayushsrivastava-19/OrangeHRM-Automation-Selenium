@@ -1,6 +1,7 @@
 package com.demoproject.pages;
 
 import com.demoproject.actiondriver.ActionDriver;
+import com.demoproject.base.BaseClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,8 +14,8 @@ public class HomePage {
     private By logoutButton = By.xpath("//a[text()='Logout']");
     private By orangeHRMLogo =  By.xpath("//div[@class='oxd-brand-banner']//img");
 
-    public HomePage(WebDriver dr){
-        this.driver = new ActionDriver(dr);
+    public HomePage(WebDriver webDriver){
+        this.driver = BaseClass.getActionDriver();
     }
 
     public boolean isAdminTabVisible(){
