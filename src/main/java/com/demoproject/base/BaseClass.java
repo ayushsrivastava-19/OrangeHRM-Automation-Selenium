@@ -36,6 +36,7 @@ public class BaseClass {
         String browser = prop.getProperty("browser");
         if (browser.equalsIgnoreCase("chrome")) {
             driver = new ChromeDriver();
+            logger.info("Chromedriver instance is created");
         } else {
             throw new IllegalArgumentException("Browser is not supported" + browser);
         }
@@ -99,8 +100,13 @@ public class BaseClass {
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            try{
+                driver.quit();
+            }catch (Exception e){
+                System.out.println("unable to quit the driver "+e.getMessage());
+            }
         }
+        logger.info("WebDriver instance is closed");
         driver = null;
         actionDriver = null;
     }

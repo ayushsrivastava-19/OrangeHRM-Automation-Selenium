@@ -27,7 +27,7 @@
 
     <loggers>
         <!-- Logger for com.demoproject (specify the package name here) -->
-        <logger name="com.orangehrm" level="trace" additivity="false">
+        <logger name="com.demoproject" level="trace" additivity="false">
             <appenderref ref="Console" />
             <appenderref ref="FileLogger" />
             <appenderref ref="ErrorFileLogger" />
