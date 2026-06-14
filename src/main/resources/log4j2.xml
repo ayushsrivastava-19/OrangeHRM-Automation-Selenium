@@ -33,5 +33,9 @@
             <appenderref ref="ErrorFileLogger" />
         </logger>
 
+        <root level="info">
+            <appenderref ref="Console" />
+        </root>
+
     </loggers>
 </configuration>
