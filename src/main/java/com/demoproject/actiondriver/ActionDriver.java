@@ -42,7 +42,7 @@ public class ActionDriver {
             waitForElementToBeVisible(by);
             driver.findElement(by).clear();
             driver.findElement(by).sendKeys(text);
-            logger.info("Element entered");
+            logger.info("Entered text on: "+getElementDescription(by)+" "+text);
         }
         catch (Exception e){
             logger.error("Unable to enter text " + e.getMessage());
@@ -59,19 +59,22 @@ public class ActionDriver {
         return "";
     }
 
-    public void compareText(By by, String text){
+    public boolean compareText(By by, String text){
         try{
             waitForElementToBeVisible(by);
             String actualText = driver.findElement(by).getText();
             if(text.equals(actualText)){
-                System.out.println("Successfully compare text " + actualText);
+//                System.out.println("Successfully compare text " + actualText);
+                return true;
             }
             else{
-                System.out.println("Failed compare text " + actualText);
+//                System.out.println("Failed compare text " + actualText);
+                return false;
             }
         }catch (Exception e){
             System.out.println("Unable to compare text " + e.getMessage());
         }
+        return false;
     }
 
     public boolean isDisplayed(By by){

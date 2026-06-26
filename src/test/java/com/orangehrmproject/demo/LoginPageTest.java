@@ -32,6 +32,8 @@ public class LoginPageTest extends BaseClass {
     public void verifyInvalidLoginTest(){
         loginPage.login("ad","admin");
         String expectedErrorMessage = "Invalid credentials";
-        Assert.assertTrue(loginPage.isErrorMessageDisplayed());
+        //String actualErrorMessage = loginPage.getErrorMessage();
+        Assert.assertTrue(loginPage.verifyErrorMessage(expectedErrorMessage));
+        //Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
 }

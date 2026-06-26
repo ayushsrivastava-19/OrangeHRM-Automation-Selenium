@@ -19,8 +19,10 @@ import org.apache.logging.log4j.Logger;
 public class BaseClass {
 
     protected static Properties prop;
-    protected static WebDriver driver;
-    private static ActionDriver actionDriver;
+//    protected static WebDriver driver;
+//    private static ActionDriver actionDriver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static ThreadLocal<ActionDriver> actionDriver = new ThreadLocal<>();
     public static final Logger logger = LoggerManager.getLogger(BaseClass.class);
 
     //Load the configuration file
@@ -35,7 +37,7 @@ public class BaseClass {
     private void launchBrowser() {
         String browser = prop.getProperty("browser");
         if (browser.equalsIgnoreCase("chrome")) {
-            driver = new ChromeDriver();
+            driver.set(new ChromeDriver());
             logger.info("Chromedriver instance is created");
         } else {
             throw new IllegalArgumentException("Browser is not supported" + browser);
@@ -45,14 +47,14 @@ public class BaseClass {
     private void configureBrowser() {
         //Implicit Wait
         int implicitWait = Integer.parseInt(prop.getProperty("implicitWait"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+        driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
 
         //maximize the browser
-        driver.manage().window().maximize();
+        driver.get().manage().window().maximize();
 
         //navigate to url
         try {
-            driver.get(prop.getProperty("url"));
+            driver.get().get(prop.getProperty("url"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,19 +65,19 @@ public class BaseClass {
     }
 
     public static WebDriver getWebDriver() {
-        if(driver == null){
+        if(driver.get() == null){
             System.out.println("WebDriver is not initialized");
             throw new IllegalStateException("WebDriver is not initialized");
         }
-        return driver;
+        return driver.get();
     }
 
     public static ActionDriver getActionDriver() {
-        if(actionDriver == null){
+        if(actionDriver.get() == null){
             System.out.println("ActionDriver is not initialized");
             throw new IllegalStateException("ActionDriver is not initialized");
         }
-        return actionDriver;
+        return actionDriver.get();
     }
 
     @BeforeMethod
@@ -91,24 +93,29 @@ public class BaseClass {
         logger.warn("This is a warn message");
         logger.debug("This is a debug message");
 
-        if(actionDriver == null){
-            actionDriver = new ActionDriver(driver);
-            System.out.println("ActionDriver instance is created"+Thread.currentThread().getId());
-        }
+//        if(actionDriver == null){
+//            actionDriver = new ActionDriver(driver);
+//            System.out.println("ActionDriver instance is created"+Thread.currentThread().getId());
+//        }
+        //Initialize action driver for the current thread
+        actionDriver.set(new ActionDriver(getWebDriver()));
+        logger.info("ActionDriver instance is initialized");
     }
 
     @AfterMethod
     public void tearDown() {
         if (driver != null) {
             try{
-                driver.quit();
+                driver.get().quit();
             }catch (Exception e){
                 System.out.println("unable to quit the driver "+e.getMessage());
             }
         }
+//        driver = null;
+//        actionDriver = null;
+        driver.remove();
+        actionDriver.remove();
         logger.info("WebDriver instance is closed");
-        driver = null;
-        actionDriver = null;
     }
 
     //Static wait for pause

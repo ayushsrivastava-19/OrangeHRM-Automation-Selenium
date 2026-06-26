@@ -8,7 +8,7 @@ public class DummyClass extends BaseClass
     @Test
     public void dummyMethod()
     {
-        String title = driver.getTitle();
+        String title = getWebDriver().getTitle();
         assert title.equals("OrangeHRM") : "Test Failed - Title Mismatch";
         System.out.println("Test Passed");
     }

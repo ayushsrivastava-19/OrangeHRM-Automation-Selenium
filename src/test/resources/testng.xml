@@ -3,7 +3,7 @@
 <suite name="OrangeHRMSuite" parallel="classes" thread-count="3">
   <test name="OrangeHRMTest">
     <classes>
-<!--      <class name="com.orangehrmproject.demo.DummyClass"></class>-->
+      <class name="com.orangehrmproject.demo.DummyClass"></class>
       <class name="com.orangehrmproject.demo.LoginPageTest"></class>
       <class name="com.orangehrmproject.demo.HomePageTest"></class>
     </classes>

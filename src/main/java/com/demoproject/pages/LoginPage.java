@@ -31,7 +31,7 @@ public class LoginPage {
         return driver.getText(errorMessage);
     }
 
-    public void verifyErrorMessage(String expectedMessage) {
-        driver.compareText(errorMessage, expectedMessage);
+    public boolean verifyErrorMessage(String expectedMessage) {
+        return driver.compareText(errorMessage, expectedMessage);
     }
 }
