@@ -34,7 +34,7 @@ public class BaseClass {
         logger.info("config.properties file loaded");
     }
 
-    private void launchBrowser() {
+    private synchronized void launchBrowser() {
         String browser = prop.getProperty("browser");
         if (browser.equalsIgnoreCase("chrome")) {
             driver.set(new ChromeDriver());
@@ -81,7 +81,7 @@ public class BaseClass {
     }
 
     @BeforeMethod
-    public void setup() throws IOException {
+    public synchronized void setup() throws IOException {
         System.out.println("Setting up Browser for:" + this.getClass().getSimpleName());
         launchBrowser();
         configureBrowser();
@@ -99,11 +99,11 @@ public class BaseClass {
 //        }
         //Initialize action driver for the current thread
         actionDriver.set(new ActionDriver(getWebDriver()));
-        logger.info("ActionDriver instance is initialized");
+        logger.info("ActionDriver instance is initialized "+Thread.currentThread().threadId());
     }
 
     @AfterMethod
-    public void tearDown() {
+    public synchronized void tearDown() {
         if (driver != null) {
             try{
                 driver.get().quit();
