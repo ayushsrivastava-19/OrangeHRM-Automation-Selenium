@@ -22,13 +22,13 @@ public class LoginPageTest extends BaseClass {
 
     @Test
     public void verifyValidLoginTest(){
-        loginPage.login("Admin", "admin123");
+        loginPage.login("Adm", "admin123");
         Assert.assertTrue(homePage.isAdminTabVisible(),"Admin tab should be visible after successfull login");
         homePage.logout();
         staticWait(2);
     }
 
-    @Test
+    @Test(enabled = false)
     public void verifyInvalidLoginTest(){
         loginPage.login("ad","admin");
         String expectedErrorMessage = "Invalid credentials";

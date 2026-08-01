@@ -1,6 +1,7 @@
 package com.demoproject.base;
 
 import com.demoproject.actiondriver.ActionDriver;
+import com.demoproject.utils.ExtentManager;
 import com.demoproject.utils.LoggerManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -99,6 +100,7 @@ public class BaseClass {
 //        }
         //Initialize action driver for the current thread
         actionDriver.set(new ActionDriver(getWebDriver()));
+        ExtentManager.registerWebDriver(getWebDriver());
         logger.info("ActionDriver instance is initialized "+Thread.currentThread().threadId());
     }
 
@@ -113,6 +115,7 @@ public class BaseClass {
         }
 //        driver = null;
 //        actionDriver = null;
+        ExtentManager.unregisterWebDriver();
         driver.remove();
         actionDriver.remove();
         logger.info("WebDriver instance is closed");

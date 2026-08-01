@@ -1,5 +1,6 @@
 package com.demoproject.listeners;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.demoproject.utils.ExtentManager;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -20,8 +21,19 @@ public class ExtentTestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ExtentManager.getTest().fail(result.getThrowable())
-                .addScreenCaptureFromPath();
+        String screenshotPath = ExtentManager.captureScreenshot(result.getMethod().getMethodName());
+        if (screenshotPath != null) {
+            try {
+                ExtentManager.getTest().fail(result.getThrowable(),
+                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            } catch (Exception e) {
+                ExtentManager.getTest().fail(result.getThrowable());
+                ExtentManager.getTest().warning("Screenshot capture failed: " + e.getMessage());
+            }
+        } else {
+            ExtentManager.getTest().fail(result.getThrowable());
+            ExtentManager.getTest().warning("Screenshot not available - WebDriver was not registered");
+        }
         ExtentManager.removeTest();
     }
 
