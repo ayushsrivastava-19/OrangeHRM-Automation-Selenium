@@ -376,3 +376,41 @@ Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 1
 Session ID: eac57feb3ea924663870c202de26e555
 2026-07-31 19:39:20 [main] INFO  BaseClass - WebDriver instance is closed
 2026-07-31 19:39:21 [main] INFO  BaseClass - Chromedriver instance is created
+2026-08-01 18:17:29 [main] INFO  BaseClass - config.properties file loaded
+2026-08-01 18:17:32 [main] INFO  BaseClass - Chromedriver instance is created
+2026-08-01 18:20:34 [main] INFO  BaseClass - Webdriver initialized and browser maximized
+2026-08-01 18:20:34 [main] TRACE BaseClass - This is a trace message
+2026-08-01 18:20:34 [main] WARN  BaseClass - This is a warn message
+2026-08-01 18:20:34 [main] DEBUG BaseClass - This is a debug message
+2026-08-01 18:20:34 [main] INFO  ActionDriver - WebDriver initialized
+2026-08-01 18:20:34 [main] INFO  BaseClass - ActionDriver instance is initialized 1
+2026-08-01 18:20:47 [main] INFO  ActionDriver - Entered text on: Element with name: username Admin
+2026-08-01 18:20:47 [main] INFO  ActionDriver - Entered text on: Element with name: password admin123
+2026-08-01 18:21:18 [main] INFO  ActionDriver - Element clicked
+2026-08-01 18:21:18 [main] INFO  ActionDriver - clicked an element--->Element with text: Login
+2026-08-01 18:21:22 [main] INFO  BaseClass - WebDriver instance is closed
+2026-08-01 18:21:23 [main] INFO  BaseClass - Chromedriver instance is created
+2026-08-01 18:21:32 [main] INFO  BaseClass - Webdriver initialized and browser maximized
+2026-08-01 18:21:32 [main] TRACE BaseClass - This is a trace message
+2026-08-01 18:21:32 [main] WARN  BaseClass - This is a warn message
+2026-08-01 18:21:32 [main] DEBUG BaseClass - This is a debug message
+2026-08-01 18:21:32 [main] INFO  ActionDriver - WebDriver initialized
+2026-08-01 18:21:32 [main] INFO  BaseClass - ActionDriver instance is initialized 1
+2026-08-01 18:21:32 [main] INFO  ActionDriver - Entered text on: Element with name: username Adm
+2026-08-01 18:21:32 [main] INFO  ActionDriver - Entered text on: Element with name: password admin123
+2026-08-01 18:21:33 [main] INFO  ActionDriver - Element clicked
+2026-08-01 18:21:33 [main] INFO  ActionDriver - clicked an element--->Element with text: Login
+2026-08-01 18:22:15 [main] INFO  BaseClass - WebDriver instance is closed
+2026-08-01 18:34:02 [main] INFO  BaseClass - config.properties file loaded
+2026-08-01 18:34:07 [TestNG-tests-1] INFO  BaseClass - FirefoxDriver instance is created
+2026-08-01 18:34:16 [TestNG-tests-1] INFO  BaseClass - Webdriver initialized and browser maximized
+2026-08-01 18:34:16 [TestNG-tests-1] TRACE BaseClass - This is a trace message
+2026-08-01 18:34:16 [TestNG-tests-1] WARN  BaseClass - This is a warn message
+2026-08-01 18:34:16 [TestNG-tests-1] DEBUG BaseClass - This is a debug message
+2026-08-01 18:34:16 [TestNG-tests-1] INFO  ActionDriver - WebDriver initialized
+2026-08-01 18:34:16 [TestNG-tests-1] INFO  BaseClass - ActionDriver instance is initialized 36
+2026-08-01 18:34:16 [TestNG-tests-1] INFO  ActionDriver - Entered text on: Element with name: username Adm
+2026-08-01 18:34:16 [TestNG-tests-1] INFO  ActionDriver - Entered text on: Element with name: password admin123
+2026-08-01 18:34:18 [TestNG-tests-1] INFO  ActionDriver - Element clicked
+2026-08-01 18:34:18 [TestNG-tests-1] INFO  ActionDriver - clicked an element--->Element with text: Login
+2026-08-01 18:35:00 [TestNG-tests-1] INFO  BaseClass - WebDriver instance is closed

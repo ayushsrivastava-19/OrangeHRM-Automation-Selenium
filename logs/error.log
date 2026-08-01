@@ -135,3 +135,9 @@ Driver info: org.openqa.selenium.chrome.ChromeDriver
 Command: [eac57feb3ea924663870c202de26e555, findElement {value=//button[normalize-space()='Login'], using=xpath}]
 Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.72, chrome: {chromedriverVersion: 151.0.7922.71 (ef35003457e9..., userDataDir: C:\Users\UNTHIN~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62803}, goog:processID: 16668, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62803/devtoo..., se:cdpVersion: 151.0.7922.72, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
 Session ID: eac57feb3ea924663870c202de26e555
+2026-08-01 18:20:34 [main] ERROR BaseClass - This is an error message
+2026-08-01 18:20:34 [main] FATAL BaseClass - This is a fatal message
+2026-08-01 18:21:32 [main] ERROR BaseClass - This is an error message
+2026-08-01 18:21:32 [main] FATAL BaseClass - This is a fatal message
+2026-08-01 18:34:16 [TestNG-tests-1] ERROR BaseClass - This is an error message
+2026-08-01 18:34:16 [TestNG-tests-1] FATAL BaseClass - This is a fatal message

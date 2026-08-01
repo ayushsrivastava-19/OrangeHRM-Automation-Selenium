@@ -5,6 +5,8 @@ import com.demoproject.utils.ExtentManager;
 import com.demoproject.utils.LoggerManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -40,8 +42,14 @@ public class BaseClass {
         if (browser.equalsIgnoreCase("chrome")) {
             driver.set(new ChromeDriver());
             logger.info("Chromedriver instance is created");
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            driver.set(new FirefoxDriver());
+            logger.info("FirefoxDriver instance is created");
+        } else if (browser.equalsIgnoreCase("safari")) {
+            driver.set(new SafariDriver());
+            logger.info("SafariDriver instance is created");
         } else {
-            throw new IllegalArgumentException("Browser is not supported" + browser);
+            throw new IllegalArgumentException("Browser is not supported: " + browser);
         }
     }
 
