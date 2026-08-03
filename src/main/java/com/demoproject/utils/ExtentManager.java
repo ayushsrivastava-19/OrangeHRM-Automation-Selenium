@@ -12,14 +12,14 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ExtentManager {
     private static ExtentReports extentReports;
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
-    private static Map<Long, WebDriver> driverMap = new HashMap<>();
+    private static Map<Long, WebDriver> driverMap = new ConcurrentHashMap<>();
 
     public static synchronized ExtentReports getExtentReports(){
         if(extentReports == null){
