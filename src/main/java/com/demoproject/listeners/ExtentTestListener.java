@@ -15,8 +15,22 @@ public class ExtentTestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        ExtentManager.getTest().pass("Test passed");
+        String screenshotPath = ExtentManager.captureScreenshot(result.getMethod().getMethodName());
+        if (screenshotPath != null) {
+            try {
+                ExtentManager.getTest().pass("Test passed",
+                        MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+            } catch (Exception e) {
+                ExtentManager.getTest().pass("Test passed");
+                ExtentManager.getTest().warning("Screenshot capture failed: " + e.getMessage());
+            }
+        } else {
+            ExtentManager.getTest().pass("Test passed");
+            ExtentManager.getTest().warning("Screenshot not available - WebDriver was not registered");
+        }
         ExtentManager.removeTest();
+//        ExtentManager.getTest().pass("Test passed");
+//        ExtentManager.removeTest();
     }
 
     @Override

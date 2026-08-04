@@ -28,7 +28,7 @@ public class LoginPageTest extends BaseClass {
         staticWait(2);
     }
 
-    @Test(enabled = false)
+    @Test
     public void verifyInvalidLoginTest(){
         loginPage.login("ad","admin");
         String expectedErrorMessage = "Invalid credentials";

@@ -88,13 +88,15 @@ public class ExtentManager {
         }
         try {
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            String fileName = testName + "_" + System.currentTimeMillis() + ".png";
             String path = System.getProperty("user.dir")
                     + "/target/ExtentReport/screenshots/"
-                    + testName + "_" + System.currentTimeMillis() + ".png";
+                    + fileName;
             File dest = new File(path);
             dest.getParentFile().mkdirs();
             FileUtils.copyFile(src, dest);
-            return path;
+            // Relative to ExtentReport.html so images load in the browser
+            return "screenshots/" + fileName;
         } catch (IOException e) {
             return null;
         }

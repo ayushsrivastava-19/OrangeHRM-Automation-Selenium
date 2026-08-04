@@ -29,10 +29,12 @@ public class ActionDriver {
         String elementDescription = getElementDescription(locator);
         try{
             waitForElementToBeClickable(locator);
+            applyBorder(locator, "green");
             driver.findElement(locator).click();
             logger.info("Element clicked");
             logger.info("clicked an element--->"+elementDescription);
         }catch (Exception e){
+            applyBorder(locator, "red");
             logger.info("Unable to click element " + e.getMessage());
         }
     }
@@ -40,11 +42,13 @@ public class ActionDriver {
     public void enterText(By by, String text){
         try{
             waitForElementToBeVisible(by);
+            applyBorder(by, "green");
             driver.findElement(by).clear();
             driver.findElement(by).sendKeys(text);
             logger.info("Entered text on: "+getElementDescription(by)+" "+text);
         }
         catch (Exception e){
+            applyBorder(by, "red");
             logger.error("Unable to enter text " + e.getMessage());
         }
     }
@@ -62,6 +66,7 @@ public class ActionDriver {
     public boolean compareText(By by, String text){
         try{
             waitForElementToBeVisible(by);
+            applyBorder(by, "green");
             String actualText = driver.findElement(by).getText();
             if(text.equals(actualText)){
 //                System.out.println("Successfully compare text " + actualText);
@@ -72,6 +77,7 @@ public class ActionDriver {
                 return false;
             }
         }catch (Exception e){
+            applyBorder(by, "red");
             System.out.println("Unable to compare text " + e.getMessage());
         }
         return false;
@@ -161,5 +167,15 @@ public class ActionDriver {
     /*
         Utility method to border an element
      */
-
+    public void applyBorder (By by, String color){
+        try {
+            WebElement element = driver.findElement(by);
+            String script = "arguments[0].style.border='3px solid " + color + "'";
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript(script, element);
+            logger.info("Applied border with color "+color+" to element: "+getElementDescription(by));
+        } catch (Exception e) {
+            logger.warn("Failed to apply border to element: "+getElementDescription(by),e);
+        }
+    }
 }
